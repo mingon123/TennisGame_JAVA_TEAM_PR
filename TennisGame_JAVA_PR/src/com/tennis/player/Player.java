@@ -5,23 +5,24 @@ public class Player {
 	// 선수구현부분 
 	
 	private String name;
-	private boolean gender;
+	private String gender;
 	private int score;
 	private int game;
+	private int set;
 	private boolean advantage;
 	
 
-	public Player(String name, boolean gender) {
+	public Player(String name, String gender) {
 		super();
 		this.name = name;
-		this.gender = false;
+		this.gender = gender;
 		this.score = 0;
 		this.game = 0;
+		this.set = 0;
 		this.advantage = false;
 	}
 
 
-	
 	public String getName() {
 		return name;
 	}
@@ -32,12 +33,12 @@ public class Player {
 	}
 
 
-	public boolean isGender() {
+	public String getGender() {
 		return gender;
 	}
 
 
-	public void setGender(boolean gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -70,6 +71,16 @@ public class Player {
 	public void setAdvantage(boolean advantage) {
 		this.advantage = advantage;
 	}
+
+	public int getSet() {
+		return set;
+	}
+
+	public void setSet(int set) {
+		this.set = set;
+	}
+
 	
+
 	
 }
