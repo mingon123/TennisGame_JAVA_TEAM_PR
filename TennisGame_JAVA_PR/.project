@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<projectDescription>
-	<name>TennisGame_JAVA_TEAM_PR</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-	</buildSpec>
-	<natures>
-	</natures>
-</projectDescription>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>TennisGame_JAVA_PR</name>
@@ -28,4 +15,3 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 </projectDescription>
->>>>>>> branch 'main' of https://github.com/hiddongs/TennisGame_JAVA_TEAM_PR
