@@ -109,7 +109,7 @@ public class GamePlaying {
 		int rnd = new Random().nextInt(101);
 		boolean lineOut = courtManager.isLineOut();
 		if (lineOut) {
-            System.out.println("⚠️ 라인 아웃! 상대 팀 점수 획득!");
+            System.out.println("라인 아웃! 상대 팀 점수 획득!");
             if (rnd > 50) {
                 scoreManager.pointToPlayer(team2.getPlayers().get(0));
             } else {
