@@ -6,7 +6,8 @@ import java.util.List;
 public class Team {
 
 	private List<Player> players;
-    
+    private static Team team1;
+    private static Team team2;
     private int game;
 	private int set;
 	private int score;
@@ -26,26 +27,26 @@ public class Team {
 		players.add(player);
 	}
 
-	public Player getPlayer(String name){
+	public Player getPlayer(String name){ // 특정 선수 정보를 조회하기 위한 함수
 
-		for(Player player : players)
+		for(Player player : players)  // 모든 선수 탐색
 		{
-			if(player.getName().equals(name)){
-				return player;
+			if(player.getName().equals(name)){ // 아름과 일치하는 선수 확인
+				return player; // 맞으면 반환
 			}
 		}
 		return null;
 	}
 	
 	
-	public String getPlayerNames() {
+	public String getPlayerNames() { // 선수의 이름 가져오기
         StringBuilder names = new StringBuilder();
-        for (Player player : players) {
-            names.append(player.getName()).append(" ");
+        for (Player player : players) { // 선수 이름 탐색
+            names.append(player.getName()).append(" "); // 선수 이름 추가
         }
-        return names.toString().trim();
+        return names.toString().trim(); // 마지마 공백 제거하고 반환
     }
-	
+
 	public void printPlayer() {
 		System.out.println("선수 목록 : ");
 		for(Player player : players) {
