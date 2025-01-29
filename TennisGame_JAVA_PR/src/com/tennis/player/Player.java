@@ -48,7 +48,4 @@ public class Player {
 	public void resetScore() {
 		this.score = 0;
 	}
-	public void increaseScore() {
-		this.score++;
-	}
 }

@@ -2,12 +2,12 @@ package com.tennis.player;
 import java.util.List;
 
 public class Team {
-	
+
 	private List<Player> players;
-	private int teamScore;
+	private int score;
 	private String name;
 	private boolean isAdvantage;
-	
+
 	public boolean isAdvantage() {
 		return isAdvantage;
 	}
@@ -18,7 +18,7 @@ public class Team {
 		super();	
 		this.name = name;
 		this.players = players;
-		this.teamScore = 0;
+		this.score = 0;
 		isAdvantage = false;
 	}
 	public String getName() {
@@ -41,21 +41,14 @@ public class Team {
 		return scoreSum;
 	}
 	public void setTeamScore(int teamScore) {
-		this.teamScore = teamScore;
+		this.score = teamScore;
 	}
-	
-	public void addPlayer(String name) {
-		this.players.add(new Player(name));
-	}
-	
-	public void increaseTeamScore() {
-		this.teamScore++;
-	}
+
 	public void resetTeamScore() {
-		this.teamScore = 0;
+		this.score = 0;
 		this.isAdvantage = false;
 		for (Player player : players) {
-            player.resetScore();
-        }
+			player.setScore(0);;
+		}
 	}
 }
