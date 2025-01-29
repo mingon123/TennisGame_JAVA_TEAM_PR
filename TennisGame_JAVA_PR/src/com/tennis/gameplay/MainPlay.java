@@ -1,10 +1,9 @@
-package com.tennis;
+package com.tennis.gameplay;
 
-import com.tennis.gameplay.GamePlaying;
 import com.tennis.player.Player;
 import com.tennis.player.Team;
 
-public class play {
+public class MainPlay {
 	
 	public static void main(String[] args) {
 		
