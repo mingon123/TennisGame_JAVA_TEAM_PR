@@ -52,7 +52,7 @@ public class Input {
         team2.printPlayer();
    }
         */
-
+    Scanner sc = new Scanner(System.in);
     private static final List<Player> malePlayers = new ArrayList<>();
     private static final List<Player> femalePlayers = new ArrayList<>();
 
@@ -85,37 +85,59 @@ public class Input {
         return new ArrayList<>(femalePlayers);
     }
 
-        Scanner sc = new Scanner(System.in);
+       
 	
 	/*
 	 * 입력값 처리하는부분 Scanner 등으로 문자열 반환해주는 부분
 	 */
-	 public List<Player> playerSetting(String gameType) { // 일단 선수이름을 직접입력받는 형태로 구현해놨음
-	    	List<Player> result = new ArrayList<>();
-	    	if (gameType.contains("복식")) {
-	    		System.out.println("A팀 1번 선수의 이름을 입력해주세요");
-	    		String name1 = sc.nextLine();
-	    		result.add(new Player(name1));
-	    		System.out.println("A팀 2번 선수의 이름을 입력해주세요");
-	    		String name2 = sc.nextLine();
-	    		result.add(new Player(name2));
-	    		System.out.println("B팀 1번 선수의 이름을 입력해주세요");
-	    		String name3 = sc.nextLine();
-	    		result.add(new Player(name3));
-	    		System.out.println("B팀 2번 선수의 이름을 입력해주세요");
-	    		String name4 = sc.nextLine();
-	    		result.add(new Player(name4));
-	    		return result;
-	    	} else {
-	    		System.out.println("A팀 1번 선수의 이름을 입력해주세요");
-	    		String name1 = sc.nextLine();
-	    		result.add(new Player(name1));
-	    		System.out.println("B팀 1번 선수의 이름을 입력해주세요");
-	    		String name2 = sc.nextLine();
-	    		result.add(new Player(name2));
-	    		return result;
-	    	}
-	    }
+    public List<Player> playerSetting(String gameType) {
+        List<Player> selectedPlayers = new ArrayList<>();
+        List<Player> malePlayers = getMalePlayers();
+        List<Player> femalePlayers = getFemalePlayers();
+    
+	if (gameType.contains("복식")) {
+        System.out.println("남자 복식(1) / 여자 복식(2) / 혼합 복식(3) 중 하나를 선택하세요:");
+        int choice = Integer.parseInt(sc.nextLine());
+
+        if (choice == 1) { // 남자 복식
+            selectedPlayers.add(selectPlayer(malePlayers, "A팀 1번"));
+            selectedPlayers.add(selectPlayer(malePlayers, "A팀 2번"));
+            selectedPlayers.add(selectPlayer(malePlayers, "B팀 1번"));
+            selectedPlayers.add(selectPlayer(malePlayers, "B팀 2번"));
+        } else if (choice == 2) { // 여자 복식
+            selectedPlayers.add(selectPlayer(femalePlayers, "A팀 1번"));
+            selectedPlayers.add(selectPlayer(femalePlayers, "A팀 2번"));
+            selectedPlayers.add(selectPlayer(femalePlayers, "B팀 1번"));
+            selectedPlayers.add(selectPlayer(femalePlayers, "B팀 2번"));
+        } else if (choice == 3) { // 혼합 복식
+            selectedPlayers.add(selectPlayer(malePlayers, "A팀 남자"));
+            selectedPlayers.add(selectPlayer(femalePlayers, "A팀 여자"));
+            selectedPlayers.add(selectPlayer(malePlayers, "B팀 남자"));
+            selectedPlayers.add(selectPlayer(femalePlayers, "B팀 여자"));
+        }
+    } else { // 단식 경기
+        System.out.println("남자 단식(1) / 여자 단식(2) 중 하나를 선택하세요:");
+        int choice = Integer.parseInt(sc.nextLine());
+
+        if (choice == 1) {
+            selectedPlayers.add(selectPlayer(malePlayers, "A팀"));
+            selectedPlayers.add(selectPlayer(malePlayers, "B팀"));
+        } else {
+            selectedPlayers.add(selectPlayer(femalePlayers, "A팀"));
+            selectedPlayers.add(selectPlayer(femalePlayers, "B팀"));
+        }
+    }
+
+    return selectedPlayers;
+}
+private Player selectPlayer(List<Player> playerList, String role) {
+    System.out.println(role + " 선수를 선택하세요:");
+    for (int i = 0; i < playerList.size(); i++) {
+        System.out.printf("%d. %s\n", i + 1, playerList.get(i).getName());
+    }
+    int choice = Integer.parseInt(sc.nextLine()) - 1;
+    return playerList.get(choice);
+}   
 	 
 	 public int gameCountSelector(String gameType) { // 경기수 선택받는 라인
 	    	if (gameType.equals("단식")) {
