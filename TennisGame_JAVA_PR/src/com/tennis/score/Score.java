@@ -1,5 +1,6 @@
 package com.tennis.score;
 
+import com.tennis.player.Player;
 import com.tennis.player.Team;
 
 public class Score {
@@ -10,6 +11,9 @@ public class Score {
 	 * 세트나 매치승리조건 구현
 	 * 
 	 */
+
+	private Player player1;
+	private Player player2;
 
 	private Team team1;
 	private Team team2;
@@ -26,9 +30,34 @@ public class Score {
 		this.team2 = team2;
 		this.match = match;
 	}
-	
 
-	// 점수 ( 상수로 관리한 걸로 변경 ) 
+	public Score(Player player1, Player player2, int match){
+		this.player1 = player1;
+		this.player2 = player2;
+		this.match = match;
+	}
+	
+	// 개인 점수 
+	public void score(Player soloWinner){
+
+		if (soloWinner.getScore() == 0) 
+		soloWinner.setScore(15);
+	else if (soloWinner.getScore() == 15) 
+	soloWinner.setScore(30);
+	else if (soloWinner.getScore() == 30) 
+	soloWinner.setScore(DEUCE_SCORE);
+	else if (soloWinner.getScore() == DEUCE_SCORE) {
+		if(soloDeuce()) {
+			advantage(soloWinner);
+		} else {
+			soloWinner.setScore(WIN_SCORE);
+		}
+	}
+	}
+
+
+
+	// 팀 점수 ( 상수로 관리한 걸로 변경 ) 
 	public void score(Team winner) {
 		if (winner.getScore() == 0) 
 			winner.setScore(15);
@@ -37,7 +66,7 @@ public class Score {
 		else if (winner.getScore() == 30) 
 			winner.setScore(DEUCE_SCORE);
 		else if (winner.getScore() == DEUCE_SCORE) {
-			if(deuce()) {
+			if(teamDeuce()) {
 				advantage(winner);
 			} else {
 				winner.setScore(WIN_SCORE);
@@ -48,29 +77,56 @@ public class Score {
 	
 
 	
-	// 어드밴티지
+	// 팀전 어드밴티지
 	public void advantage(Team winner) { // 어드밴티지 함수 다듬기
-		if (deuce()) {
+		if (teamDeuce()) {
 			
+			    
 				team1.setAdvantage(team1 == winner);
 				team2.setAdvantage(team2 == winner);
 		}else
 			winner.setAdvantage(false);
 	
 	}
+	// 개인전 어드밴티지
+	public void advantage(Player soloWinner) { // 어드밴티지 함수 다듬기
+		if (soloDeuce()) {
+			
+			    
+				player1.setAdvantage(player1 == soloWinner);
+				player2.setAdvantage(player2 == soloWinner);
+		}else
+			soloWinner.setAdvantage(false);
+	
+	}
+	
+     // 개인전 듀스
+    public boolean soloDeuce() { // 듀스 로직
+	   return player1.getScore() == 40 && player2.getScore() == 40 && !player1.isAdvantage() && !player2.isAdvantage(); 
+    }
 
 	
-	// 듀스
-	public boolean deuce() { // 듀스 로직
+	// 팀전 듀스
+	public boolean teamDeuce() { // 듀스 로직
 		return team1.getScore() == 40 && team2.getScore() == 40 && !team1.isAdvantage() && !team2.isAdvantage(); 
 	}
 	
 	
-	// 게임승리
+	// 팀전 게임승리
 	public boolean gameWinner(Team winner) {
-		if(deuce()) {
+		if(teamDeuce()) {
 			return false;
 		} else if (winner.getScore() == 50){
+			scoreReset();
+			return true;	
+		}
+		return false;
+	}
+	// 개인전 게임승리
+	public boolean gameWinner(Player soloWinner) {
+		if(soloDeuce()) {
+			return false;
+		} else if (soloWinner.getScore() == 50){
 			scoreReset();
 			return true;	
 		}
@@ -114,10 +170,15 @@ public class Score {
 	}
 	
 	
-	// 초기화
+	// 팀전 초기화
 	public void scoreReset() {
 		team1.setScore(0);
 		team2.setScore(0);
+	}
+	// 개인전 초기화
+	public void soloScoreReset() {
+		player1.setScore(0);
+		player2.setScore(0);
 	}
 	
 	public void gameReset() {

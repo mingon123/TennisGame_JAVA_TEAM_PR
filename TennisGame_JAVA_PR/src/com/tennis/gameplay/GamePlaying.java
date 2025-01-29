@@ -1,5 +1,8 @@
 package com.tennis.gameplay;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.tennis.player.Player;
 import com.tennis.player.Team;
 
@@ -7,14 +10,16 @@ public class GamePlaying {
 	//경기흐름 조정하는 부분 main에서는 이부분의 함수만 호출할 예정
 	public static void gameStart() {
 		//
-		input(); // 
+		playerList(); // 
+		
+		System.out.printf(Arrays.toString(playerList()));
 		game();
 		
 	}
 	private static void game() {
 		//
 	}
-	private static void input() {
+	private static List<Player> playerList() {
 		// 이름, 플레이어 등등 등록
 		
         
@@ -33,6 +38,9 @@ public class GamePlaying {
 		Player player13 = new Player("이찬희", "남");
 		Player player14 = new Player("주정호", "남");
 		Player player15 = new Player("최지우", "여");
+
+		
+		
 		
 		// 복식
 //		Team team1 = new Team( , );

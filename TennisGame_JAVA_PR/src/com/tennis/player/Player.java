@@ -9,7 +9,7 @@ public class Player {
 	private String name;
 	private String gender; // 선수 개개인의 성별 
 	private int score;  // 선수 개개인의 점수 
-	
+	private boolean advantage;
 
 	
    
@@ -52,7 +52,20 @@ public class Player {
 	public void setScore(int score) {
 		this.score = score;
 	}
-
+	public void setAdvantage(boolean advantage) {
+		// TODO Auto-generated method stub
+		this.advantage = advantage;
+		
+	}
+	public void getAdvantage(boolean advantage) {
+		// TODO Auto-generated method stub
+		this.advantage = advantage;
+		
+	}
+	public boolean isAdvantage() {
+		// TODO Auto-generated method stub
+		return advantage;
+	}
 
 	
 
