@@ -1,5 +1,6 @@
-package com.tennis.gameplay;
+package com.tennis;
 
+import com.tennis.gameplay.GamePlaying;
 import com.tennis.player.Player;
 import com.tennis.player.Team;
 
