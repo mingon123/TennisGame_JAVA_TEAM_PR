@@ -45,6 +45,12 @@ public class GamePlaying {
 		Team team2 = scoreManager.getTeam2();
 		Scanner sc = new Scanner(System.in);
 
+		// 추가된 부분 --------------------------------------------------
+
+		//  게임 시작 시 첫 번째 서브 팀 설정
+		courtManager.setInitialServer(team1);
+
+		// 추가된 부분 --------------------------------------------------
 
 		while (setsWonTeam1 < matchesToWin && setsWonTeam2 < matchesToWin) {
 			// 점수 초기화
@@ -72,7 +78,9 @@ public class GamePlaying {
 				}
 			}
 
-			// 승리한 팀 계산
+			// 수정된 부분 ----------------------------------------------
+
+			//  세트 종료 후 서브 변경
 			if (scoreManager.getScore().contains("승리")) {
 				if (scoreManager.getScore().contains(team1.getName())) {
 					setsWonTeam1++;
@@ -80,9 +88,12 @@ public class GamePlaying {
 					setsWonTeam2++;
 				}
 				System.out.printf("세트 스코어: %d - %d%n", setsWonTeam1, setsWonTeam2);
-				scoreManager.resetScores(); // 다음 세트를 위해 점수 초기화
-				
-				System.out.println("세트 종료 엔터키 입력");
+				scoreManager.resetScores(); 
+	
+				//  세트가 끝났으므로 서브하는 팀 변경
+				courtManager.swapServeAtSetStart(team1, team2);
+	
+				System.out.println("세트 종료! 다음 서브 진행. 엔터키 입력");
 				try {
 					System.in.read();
 					System.in.skip(System.in.available());
@@ -90,7 +101,11 @@ public class GamePlaying {
 					e.printStackTrace();
 				}
 			}
+
+			// 수정된 부분 ----------------------------------------------
 		}
+
+		
 		// 게임 종결 메시지
 		System.out.println("경기 종료");
 		System.out.printf("최종 승자: %s (%d세트 승리)\n", setsWonTeam1 > setsWonTeam2 ? team1.getName() : team2.getName(), Math.max(setsWonTeam1, setsWonTeam2));
