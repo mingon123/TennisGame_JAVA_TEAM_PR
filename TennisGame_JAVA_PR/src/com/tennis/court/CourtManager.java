@@ -32,17 +32,28 @@ public class CourtManager {
 
 
     // 게임 진행 시 호출할 함수
-    public void updateCourtState(Team team1, Team team2) {
+    public void updateCourtState(Team team1, Team team2, String gameType) {
         totalGamePlay++;
-        swapServePos(); // 서브 위치 변경
-        swapCourt(team1, team2); // 코트 체인지
+     // 단식과 복식 구분하여 처리
+        if (gameType.equals("단식")) {
+            swapServePos(); // 단식도 서브 위치 변경
+            if (totalGamePlay % 2 == 1) { // 단식에서도 코트 변경 적용
+                isLeftCourt = !isLeftCourt;
+            }
+        } else {
+            swapServePos(); 
+            swapCourt(team1, team2); // 복식은 기존 로직 유지
+        }
     }
-
     // 추가된 부분 --------------------------------------------------
  
     // 새로운 세트가 시작될 때 서브 팀 변경하는 메서드 추가
     public void swapServeAtSetStart(Team team1, Team team2) {
-        servingTeam = (servingTeam == team1) ? team2 : team1;
+        if (servingTeam == team1) {
+            servingTeam = team2;
+        } else {
+            servingTeam = team1;
+        }
         System.out.println("새 세트 시작! 서브 팀 변경: " + servingTeam.getName());
     }
 
@@ -67,4 +78,47 @@ public class CourtManager {
     public boolean isLeftServer() {
         return isLeftServer;
     }
+    
+    //  테니스 코트 상태 출력 (추가)
+    public void printTennisCourt(Team team1, Team team2, boolean isDouble) {
+        System.out.println("\n [ 테니스 코트 상태 ]");
+        
+        if (isDouble) {
+            System.out.println(
+                "┌──────────────────┐\n" +
+                "│ O  |      |  O  │  " + team1.getName() + "\n" +
+                "│-----|------|-----│\n" +
+                "│     |      |     │\n" +
+                "│-----|------|-----│\n" +
+                "│ O  |      |  O  │  " + team2.getName() + "\n" +
+                "└──────────────────┘"
+            );
+        } else {
+            System.out.println(
+                "┌──────────────────┐\n" +
+                "│     |  O   |     │  " + team1.getName() + "\n" +
+                "│-----|------|-----│\n" +
+                "│     |      |     │\n" +
+                "│-----|------|-----│\n" +
+                "│     |  O   |     │  " + team2.getName() + "\n" +
+                "└──────────────────┘"
+            );
+        }
+        
+        
+    }
+    //  코트 체인지 출력 (추가)
+    public void swapCourtPrint(Team team1, Team team2) {
+        System.out.println("\n 코트 체인지!");
+        System.out.println(
+            "┌──────────────────┐\n" +
+            "│     |  O   |     │  " + team2.getName() + "\n" +
+            "│-----|------|-----│\n" +
+            "│     |      |     │\n" +
+            "│-----|------|-----│\n" +
+            "│     |  O   |     │  " + team1.getName() + "\n" +
+            "└──────────────────┘"
+        );
+    }
 }
+
