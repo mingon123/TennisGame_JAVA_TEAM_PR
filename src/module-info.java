@@ -4,5 +4,5 @@
 /**
  * 
  */
-module TennisGame_JAVA_PR {
+module Tennis_PR_One {
 }
