@@ -169,9 +169,9 @@ Notion &emsp;&emsp; |&emsp; 프로젝트 문서화 및 역할 분배
 
 - 박정현(팀원) : 프로젝트 전반 관리 및 GamePlaying, Input 클래스 작성
 
-- 박예진(팀원) : Print 클래스 작성
+- 박예진(팀원) : Player, Print 클래스 작성
 
-- 김하은(팀원) : 코드 공부
+- 김하은(팀원) : Team 클래스 작성
 
 <br>
 
