@@ -217,5 +217,5 @@ Notion &emsp;&emsp; |&emsp; 프로젝트 문서화 및 역할 분배
 [테니스 게임 2조.pptx](https://github.com/user-attachments/files/18614159/E.2.pptx)
 
 (3조) 발표자료
-[테니스 게임 3조.pdf](https://github.com/user-attachments/files/18614183/3._._.pdf)
+[테니스 게임 3조.pptx](https://github.com/user-attachments/files/18631736/3._.pptx)
 
