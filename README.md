@@ -59,86 +59,6 @@
 
 <br>
 
-## 🔍 코드 로직 및 설명
-
-1️⃣ Player 클래스 (개별 선수 정보 저장)
-
-- 선수의 이름, 성별, 점수 를 관리
-
-- resetScore() 메서드를 통해 점수를 초기화
-
-```
-public class Player {
-    private String name;
-    private String gender;
-    private int score;
-
-    public Player(String name, String gender) {
-        this.name = name;
-        this.gender = gender;
-        this.score = 0;
-    }
-
-    public void resetScore() {
-        this.score = 0;
-    }
-}
-```
-
-<br>
-
-2️⃣ Team 클래스 (팀 점수 및 상태 관리)
-
-- 팀에 속한 플레이어 목록, 팀 점수, 어드밴티지 상태 를 관리
-
-- getTeamScore() 메서드를 통해 팀의 총점 계산
-
-```
-public class Team {
-    private List<Player> players;
-    private int score;
-    private boolean isAdvantage;
-
-    public int getTeamScore() {
-        return players.stream().mapToInt(Player::getScore).sum();
-    }
-
-    public void resetTeamScore() {
-        players.forEach(Player::resetScore);
-        this.isAdvantage = false;
-    }
-}
-```
-
-<br>
-
-3️⃣ Score 클래스 (점수 시스템 구현)
-
-- 테니스 점수 규칙(포인트, 듀스, 어드밴티지, 승패 판별) 적용
-
-- pointToPlayer() 메서드를 통해 점수 추가 및 상태 업데이트
-
-- updateGameState() 메서드로 듀스 및 어드밴티지 적용
-
-```
-public void pointToPlayer(Player player) {
-    if (gameWon) return;
-    
-    player.setScore(player.getScore() + 1);
-    updateGameState();
-}
-
-private void updateGameState() {
-    if (score1 >= 4 || score2 >= 4) {
-        if (Math.abs(score1 - score2) >= 2) {
-            gameWon = true;
-        }
-    }
-}
-```
-
-<br>
-
 
 ## 💻 기술 스택
 - Java 17
@@ -158,20 +78,6 @@ GitHub &emsp;&emsp; |&emsp; 코드 형상 관리, 브랜치 활용
 Discord &emsp;&emsp;|&emsp; 실시간 회의 및 토론
 
 Notion &emsp;&emsp; |&emsp; 프로젝트 문서화 및 역할 분배
-
-<br>
-
-**팀원 역할 :**
-
-- 양희동(팀장) : 노션 및 프로젝트 전반 관리, CourtManager 클래스 작성
-
-- 김민곤(팀원) : Git 전반 관리 및 Player, Team, Score 클래스 작성
-
-- 박정현(팀원) : 프로젝트 전반 관리 및 GamePlaying, Input 클래스 작성
-
-- 박예진(팀원) : Player, Print 클래스 작성
-
-- 김하은(팀원) : Team 클래스 작성
 
 <br>
 
@@ -210,7 +116,7 @@ Notion &emsp;&emsp; |&emsp; 프로젝트 문서화 및 역할 분배
 📎 발표 자료
 (같은 주제라 다른 조 발표 자료도 추가)
 
-우리조(1조) 발표 자료
+본인(1조) 발표 자료
 [테니스 게임 1조.pptx](https://github.com/user-attachments/files/18615071/1.pptx)
 
 (2조) 발표자료
